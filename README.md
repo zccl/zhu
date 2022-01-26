@@ -1,7 +1,5 @@
 <h1 align="center">微信消息通知</h1>
 
-<p align="center"><img width="340" src="./weixin.jpg" alt="weixin"></p>
-
 <p align="center">
   <a href="https://github.com/JS-banana/notify-server">
     <img src="https://visitor-badge.glitch.me/badge?page_id=js-banana.notify-server" alt="notify-server">
@@ -136,3 +134,5 @@ schedule:
 ## 感谢
 
 灵感来自：[juejin-auto-checkin](https://github.com/KaiOrange/juejin-auto-checkin)
+
+转载来自：https://github.com/JS-banana/notify-server

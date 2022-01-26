@@ -6,7 +6,8 @@ import { getTian } from '../utils/http'
  */
 enum LoveMsgURL {
   // 天气
-  weather = 'https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=43656176&appsecret=I42og6Lm',
+  weather = 'http://api.tianapi.com/tianqi/index',
+  // weather = 'https://v0.yiketianqi.com/api?unescape=1&version=v61&appid=43656176&appsecret=I42og6Lm',
   // 每日简报
   dailyBriefing = 'http://api.tianapi.com/bulletin/index',
   // 今日头条
@@ -23,6 +24,8 @@ enum LoveMsgURL {
   netEaseCloud = 'http://api.tianapi.com/hotreview/index',
   // 获取农历信息
   lunarDate = 'http://api.tianapi.com/lunar/index',
+  // 获取节假日信息
+  isHoliday = 'http://api.tianapi.com/jiejiari/index',
   // 土味情话
   saylove = 'http://api.tianapi.com/saylove/index',
   // 彩虹屁
@@ -33,6 +36,8 @@ enum LoveMsgURL {
   joke = 'http://api.tianapi.com/joke/index',
   // 一言
   oneWord = 'https://v1.hitokoto.cn/?encode=json',
+  // 俏皮话
+  loveW = 'https://v1.hitokoto.cn/?encode=json',
 }
 
 class API {
@@ -50,21 +55,23 @@ class API {
    */
 
   // 天气
-  async getWeather(city_name: string): Promise<IWeatherResponseProps | null> {
+  /* async getWeather(city_name: string): Promise<IWeatherResponseProps | null> {
     try {
       const response = await axios({ url: LoveMsgURL.weather, params: { city: city_name } })
       const result = response.data
       // 预警天气
-      if (!result.alarm.alarm_type && !result.alarm_content)
-        result.alarm = null
+      if (!result.alarm.alarm_type && !result.alarm_content) result.alarm = null
 
       console.log('天气请求成功==>', city_name)
       return response.data
-    }
-    catch (error) {
+    } catch (error) {
       console.log('天气请求失败==>', error)
       return null
     }
+  } */
+  async getWeather(city = '云梦') {
+    const res = await getTian<Weather[]>({ url: LoveMsgURL.weather, params: { city } })
+    return res?.[0]
   }
 
   // 每日简报
@@ -115,6 +122,12 @@ class API {
     return res?.[0]
   }
 
+  // 获取节假日信息
+  async getIsHoliday(date: string) {
+    const res = await getTian<ResIsHolidayProps[]>({ url: LoveMsgURL.isHoliday, params: { date } })
+    return res?.[0]
+  }
+
   // 土味情话
   async getSaylove() {
     const res = await getTian<SayloveProps[]>({ url: LoveMsgURL.saylove })
@@ -138,8 +151,18 @@ class API {
     try {
       const response = await axios(LoveMsgURL.oneWord, { timeout: 30000 })
       return response.data
+    } catch (error) {
+      console.log(error)
+      return null
     }
-    catch (error) {
+  }
+
+  // 一言
+  async getLoveW(): Promise<LoveW | null> {
+    try {
+      const response = await axios(LoveMsgURL.loveW, { timeout: 30000 })
+      return response.data
+    } catch (error) {
       console.log(error)
       return null
     }

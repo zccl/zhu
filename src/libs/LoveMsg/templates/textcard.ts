@@ -16,18 +16,18 @@ const start_stamp = '2020-10-02'
 
 export const textCardTemplate = (data: TextCardTemplateProps) => {
   const {
-    city,
+    area,
     date,
-    wea,
-    tem1,
-    tem2,
-    win,
-    win_speed_day,
-    air,
-    air_level,
-    // air_tips,
+    weather,
+    highest,
+    lowest,
+    wind,
+    windsc,
+    // air,
+    // air_level,
+    tips,
     humidity,
-    alarm,
+    // alarm,
     lunarInfo,
     week,
     oneWord,
@@ -44,37 +44,33 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
   const jieqi_info = jieqi ? `| ${jieqi}` : ''
 
   // 拼接内容
-  let description = `${city} | ${today} | ${week} ${festival_info}
-农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info}\n
-今日天气状况：
-天气：${wea}
-${win}：${win_speed_day}
-温度：${tem2}℃ ~ ${tem1}℃
-湿度：${humidity}
-空气：${air_level} | ${air}\n`
+  let description = `${area} | ${today} | ${week} ${festival_info}
+农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info}
+`
 
   // 添加预警天气
-  if (alarm) {
-    description += `
-有预警信息哦：${alarm.alarm_type} | ${alarm.alarm_level}预警\n`
-  }
+  //   if (alarm) {
+  //     description += `
+  // 有预警信息哦：${alarm.alarm_type} | ${alarm.alarm_level}预警\n`
+  //   }
 
-  // 最高温度
-  if (+tem1 <= 10) {
+  /*   // 最高温度
+  if (+highest.slice(0, -1) <= 10) {
     description += `
 哈喽哈喽~这里是给猪的爱心提醒哦：
-今日最高温度仅为🥶 ${tem1}℃，可冷可冷了~
+今日最高温度仅为🥶 ${highest}，可冷可冷了~
 猪可要注意保暖哦~\n`
   }
 
-  //   if (air_tips) {
-  //     description += `
-  // 出行建议：${air_tips}`
-  //   }
+  if (tips) {
+    description += `
+生活指数提示：${tips}`
+  } */
 
   if (oneWord) {
     description += `
-『 ${oneWord.hitokoto} 』`
+『 ${oneWord.hitokoto} 』
+`
   }
 
   // 内容末尾，自定义

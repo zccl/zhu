@@ -1,43 +1,67 @@
-// 定义天气返回值类型
-interface IWeatherResponseProps {
+// // 定义天气返回值类型
+// interface IWeatherResponseProps {
+//   /** 2021-12-18 */
+//   date: string
+//   /** 星期六 */
+//   week: string
+//   /** 云梦 */
+//   city: string
+//   /** 晴 */
+//   wea: string
+//   /** 西南风 */
+//   win: string
+//   /** 3-4级 */
+//   win_speed_day: string
+//   /** 湿度：35% */
+//   humidity: string
+//   /** 空气：67 */
+//   air: string
+//   /** 空气质量：良 */
+//   air_level: string
+//   /** 活动建议 */
+//   air_tips: string
+//   /** pm2.5：21 */
+//   air_pm25: string
+//   /** 当前温度 4 */
+//   tem: string
+//   /** 最高温度 8 */
+//   tem1: string
+//   /** 最低温度 -2 */
+//   tem2: string
+//   alarm: IAlarmProps | null
+// }
+// // 预警信息
+// interface IAlarmProps {
+//   /** 暴雨 */
+//   alarm_type: ''
+//   /** 橙色 */
+//   alarm_level: ''
+//   /** 内容 */
+//   alarm_content: ''
+// }
+interface Weather {
   /** 2021-12-18 */
   date: string
   /** 星期六 */
   week: string
-  /** 蚌埠 */
-  city: string
+  /** 云梦 */
+  area: string
   /** 晴 */
-  wea: string
+  weather: string
   /** 西南风 */
-  win: string
+  wind: string
   /** 3-4级 */
-  win_speed_day: string
+  windsc: string
   /** 湿度：35% */
   humidity: string
-  /** 空气：67 */
-  air: string
-  /** 空气质量：良 */
-  air_level: string
   /** 活动建议 */
-  air_tips: string
-  /** pm2.5：21 */
-  air_pm25: string
+  tips: string
   /** 当前温度 4 */
-  tem: string
+  real: string
   /** 最高温度 8 */
-  tem1: string
+  highest: string
   /** 最低温度 -2 */
-  tem2: string
-  alarm: IAlarmProps | null
-}
-// 预警信息
-interface IAlarmProps {
-  /** 暴雨 */
-  alarm_type: ''
-  /** 橙色 */
-  alarm_level: ''
-  /** 内容 */
-  alarm_content: ''
+  lowest: string
 }
 
 interface IVerseProps {
@@ -124,6 +148,11 @@ interface ResLunarDateProps {
   jieqi: string
 }
 
+// 获取农历信息
+interface ResIsHolidayProps {
+  isnotwork: number
+}
+
 // 土味情话
 interface SayloveProps {
   content: string
@@ -150,13 +179,23 @@ interface OneWordProps {
   creator: string
 }
 
+// 俏皮话
+interface LoveW {
+  hitokoto: string
+  from: string
+  from_who: string
+  creator: string
+}
+
 /**
  * 模板
  */
 // goodMorning
-type TextCardTemplateProps = IWeatherResponseProps & {
+type TextCardTemplateProps = Weather & {
+  loveW: LoveW | null
   lunarInfo: ResLunarDateProps
-  oneWord?: OneWordProps | null
+  isHoliday: ResIsHolidayProps | null
+  oneWord: OneWordProps | null
 }
 
 // goodEvening
@@ -164,8 +203,10 @@ type TextTemplateProps = {
   sayLove: SayloveProps | null
   caiHongpi: SayloveProps | null
   oneWord: OneWordProps | null
+  isHoliday: ResIsHolidayProps
   songLyrics: IVerseProps | null
   oneMagazines: OneMagazines | null
   netEaseCloud: NetEaseCloudProps | null
   dayEnglish: ResEnglishProps | null
+  weather: Weather | null
 }

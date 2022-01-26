@@ -3,23 +3,40 @@
  * https://open.work.weixin.qq.com/api/doc/90000/90135/90236
  */
 
-import dayjs, { weekToday } from '../../../utils/dayjs'
+import dayjs from '../../../utils/dayjs'
+// import dayjs, { weekToday } from '../../../utils/dayjs'
 
 export const textTemplate = (data: TextTemplateProps) => {
-  const { caiHongpi, sayLove, songLyrics, oneMagazines, netEaseCloud, oneWord, dayEnglish } = data
+  const {
+    caiHongpi,
+    sayLove,
+    songLyrics,
+    oneMagazines,
+    netEaseCloud,
+    oneWord,
+    dayEnglish,
+    isHoliday,
+    weather,
+  } = data
 
-  let text = '早安呀，我可爱的小猪~\n'
+  let text = '早安呀，可爱的猪~\n'
 
   // 工作日/休息日，需要排除节假日
-  const week = weekToday()
-  if (['星期六', '星期日'].includes(week)) {
+  // const week = weekToday()
+  if (isHoliday?.isnotwork === 0) {
     text += `
-如果我小猪已经起床啦！向你说早安呦~，记得吃早饭呀😆\n
-嗯哼哼~今天可是${week}哦，上班别迟到了哦~`
+如果我猪已经起床啦！向你说早安呦~，记得吃早饭呀😆\n
+嗯哼哼~今天可是工作日！上班别迟到了哦~\n`
   } else {
     text += `
 如果我小猪还没起床！就我等着小猪起床给我说早安呦🤣
-嗯哼~，既然今天是${week}，就让你再睡会懒觉~下次可不能啦~😝\n`
+嗯哼~，既然今天是休息日，就再睡会懒觉~没关系啦~😝\n`
+  }
+
+  if (weather) {
+    // 生活指数提示：
+    text += `
+生活指数提示：${weather.tips}\n`
   }
 
   // 添加笑话

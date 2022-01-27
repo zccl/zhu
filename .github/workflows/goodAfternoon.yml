@@ -1,4 +1,4 @@
-name: GoodMorning for you
+name: GoodAfternoon for you
 on:
   workflow_dispatch:
     branches:

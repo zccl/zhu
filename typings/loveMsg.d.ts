@@ -141,6 +141,7 @@ interface NetEaseCloudProps {
 
 // 获取农历信息
 interface ResLunarDateProps {
+  gregoriandate: string
   festival: string
   lunar_festival: string
   jieqi: string

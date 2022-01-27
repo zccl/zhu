@@ -5,24 +5,21 @@
 import API from '../../api/loveMsg'
 import { wxNotify } from '../WxNotify'
 import { greetingsTemplate } from './templates/greetingsT'
+import dayjs from 'dayjs'
 
 // 天气信息
-const weatherInfo = async () => {
-  const weather = await API.getWeather('云梦')
-  const date = new Date().toLocaleDateString()
-  if (weather) {
-    const lunarInfo = await API.getLunarDate(date)
-    const oneWord = await API.getOneWord()
-    const template = greetingsTemplate({ lunarInfo, oneWord })
-    console.log('weatherInfo', template)
+const greetingsInfo = async () => {
+  const date = dayjs().format('YYYY-MM-DD')
+  const lunarInfo = await API.getLunarDate(date)
+  const oneWord = await API.getOneWord()
+  const template = greetingsTemplate({ lunarInfo, oneWord })
+  console.log('greetingsInfo', template)
 
-    // 发送消息
-    await wxNotify(template)
-  }
-  return weather
+  // 发送消息
+  await wxNotify(template)
 }
 
 // greetings
 export const greetings = async () => {
-  await weatherInfo()
+  await greetingsInfo()
 }

@@ -9,32 +9,18 @@
  * 微信通知 textcard类型的description内容限制512个字节
  */
 
-import dayjs from '../../../utils/dayjs'
+import dayjs, { weekToday } from '../../../utils/dayjs'
 
 // 相识的日子
 const start_stamp = '2020-10-02'
 
-export const textCardTemplate = (data: TextCardTemplateProps) => {
-  const {
-    area,
-    date,
-    weather,
-    highest,
-    lowest,
-    wind,
-    windsc,
-    // air,
-    // air_level,
-    tips,
-    humidity,
-    // alarm,
-    lunarInfo,
-    week,
-    oneWord,
-  } = data
+export const greetingsTemplate = (data: GreetingsTemplateProps) => {
+  const { lunarInfo, oneWord } = data
 
   // 今日、恋爱天数
-  const today = `${date.replace('-', '年').replace('-', '月')}日`
+  const date = new Date().toLocaleDateString()
+  const week = weekToday()
+  const today = `${date.replace('/', '年').replace('/', '月')}日`
   const dateLength = dayjs(date).diff(start_stamp, 'day')
 
   // 公历节日、农历节日和二十四节气
@@ -44,28 +30,9 @@ export const textCardTemplate = (data: TextCardTemplateProps) => {
   const jieqi_info = jieqi ? `| ${jieqi}` : ''
 
   // 拼接内容
-  let description = `${area} | ${today} | ${week} ${festival_info}
+  let description = `${today} | ${week} ${festival_info}
 农历 | ${lubarmonth}${lunarday} ${lunar_festival_info} ${jieqi_info}
 `
-
-  // 添加预警天气
-  //   if (alarm) {
-  //     description += `
-  // 有预警信息哦：${alarm.alarm_type} | ${alarm.alarm_level}预警\n`
-  //   }
-
-  /*   // 最高温度
-  if (+highest.slice(0, -1) <= 10) {
-    description += `
-哈喽哈喽~这里是给猪的爱心提醒哦：
-今日最高温度仅为🥶 ${highest}，可冷可冷了~
-猪可要注意保暖哦~\n`
-  }
-
-  if (tips) {
-    description += `
-生活指数提示：${tips}`
-  } */
 
   if (oneWord) {
     description += `

@@ -77,7 +77,7 @@ ${sayLove.content}\n`
   // 每日英语
   if (dayEnglish) {
     text += `
-『每日英语（${dayjs(dayEnglish.date).format('ll')}』${dayEnglish.content}`
+『每日英语（${dayjs(dayEnglish.date).format('ll')}）』${dayEnglish.content}`
   }
 
   return {

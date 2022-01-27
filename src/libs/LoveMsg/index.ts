@@ -4,6 +4,7 @@
  */
 import dotenv from 'dotenv'
 import { goodMorning } from './goodMorning'
+import { greetings } from './greetings'
 import { goodAfternoon } from './goodAfternoon'
 import { goodEvening } from './goodEvening'
 dotenv.config()
@@ -14,12 +15,13 @@ export default function main() {
   if (MESSAGE_TYPE === 'goodAfternoon') {
     // 午安
     goodAfternoon()
-  }
-  else if (MESSAGE_TYPE === 'goodEvening') {
+  } else if (MESSAGE_TYPE === 'goodEvening') {
     // 晚安
     goodEvening()
-  }
-  else {
+  } else if (MESSAGE_TYPE === 'greetings') {
+    // 晚安
+    greetings()
+  } else {
     // 早安
     goodMorning()
   }

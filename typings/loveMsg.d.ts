@@ -193,8 +193,12 @@ interface LoveW {
 // goodMorning
 type TextCardTemplateProps = Weather & {
   loveW: LoveW | null
-  lunarInfo: ResLunarDateProps
   isHoliday: ResIsHolidayProps | null
+}
+
+// greetings
+type GreetingsTemplateProps = {
+  lunarInfo: ResLunarDateProps
   oneWord: OneWordProps | null
 }
 

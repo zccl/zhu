@@ -6,7 +6,6 @@ import API from '../../api/loveMsg'
 import { wxNotify } from '../WxNotify'
 import { textTemplate } from './templates/text'
 import { textCardTemplateW } from './templates/textcardW'
-import { textCardTemplate } from './templates/textcard'
 
 // 美丽短句
 const goodWord = async (weather: Weather) => {
@@ -60,19 +59,15 @@ const goodWord = async (weather: Weather) => {
 // 天气信息
 const weatherInfo = async () => {
   const weather = await API.getWeather('云梦')
+  const date = new Date().toLocaleDateString()
   if (weather) {
     const loveW = await API.getLoveW()
-    const lunarInfo = await API.getLunarDate(weather.date)
-    const isHoliday = await API.getIsHoliday(weather.date)
-    const oneWord = await API.getOneWord()
-    const templateW = textCardTemplateW({ ...weather, loveW, lunarInfo, isHoliday, oneWord })
+    const isHoliday = await API.getIsHoliday(date)
+    const templateW = textCardTemplateW({ ...weather, loveW, isHoliday })
     console.log('weatherInfoW', templateW)
-    const template = textCardTemplate({ ...weather, loveW, lunarInfo, isHoliday, oneWord })
-    console.log('weatherInfo', template)
 
     // 发送消息
     await wxNotify(templateW)
-    await wxNotify(template)
   }
   return weather
 }

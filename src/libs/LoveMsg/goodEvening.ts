@@ -4,10 +4,10 @@
  */
 import API from '../../api/loveMsg'
 import { wxNotify } from '../WxNotify'
-import { newsTemplate } from './templates/news'
+// import { newsTemplate } from './templates/news'
 
 // 获取新闻
-const getNews = async () => {
+/* const getNews = async () => {
   try {
     // 每日简报
     // const dailyBriefing = await API.getDailyBriefing()
@@ -73,7 +73,7 @@ const getNews = async () => {
   } catch (error) {
     console.log('goodEvening', error)
   }
-}
+} */
 
 // 获今日取故事
 const getStory = async () => {
@@ -94,5 +94,5 @@ ${res.content}`,
 // 执行函数
 export const goodEvening = async () => {
   await getStory()
-  await getNews()
+  // await getNews()
 }

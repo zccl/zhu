@@ -7,6 +7,7 @@ import { goodMorning } from './goodMorning'
 import { greetings } from './greetings'
 import { goodAfternoon } from './goodAfternoon'
 import { goodEvening } from './goodEvening'
+import { moyu } from './moyu'
 dotenv.config()
 
 const { MESSAGE_TYPE } = process.env
@@ -21,6 +22,9 @@ export default function main() {
   } else if (MESSAGE_TYPE === 'greetings') {
     // 晚安
     greetings()
+  } else if (MESSAGE_TYPE === 'moyu') {
+    // 摸鱼
+    moyu()
   } else {
     // 早安
     goodMorning()

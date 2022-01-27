@@ -16,6 +16,7 @@ const start_stamp = '2020-10-02'
 
 export const greetingsTemplate = (data: GreetingsTemplateProps) => {
   const { lunarInfo, oneWord } = data
+  console.log(lunarInfo)
 
   // 今日、恋爱天数
   const date = new Date().toLocaleDateString()

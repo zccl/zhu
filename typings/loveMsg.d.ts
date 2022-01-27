@@ -141,11 +141,11 @@ interface NetEaseCloudProps {
 
 // 获取农历信息
 interface ResLunarDateProps {
-  lunar_festival: string
   festival: string
+  lunar_festival: string
+  jieqi: string
   lubarmonth: string
   lunarday: string
-  jieqi: string
 }
 
 // 获取农历信息

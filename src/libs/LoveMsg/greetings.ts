@@ -10,8 +10,6 @@ import { greetingsTemplate } from './templates/greetingsT'
 const weatherInfo = async () => {
   const weather = await API.getWeather('云梦')
   const date = new Date().toLocaleDateString()
-  console.log(date)
-  console.log(weather.date)
   if (weather) {
     const lunarInfo = await API.getLunarDate(date)
     const oneWord = await API.getOneWord()

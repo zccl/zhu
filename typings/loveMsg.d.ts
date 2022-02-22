@@ -194,7 +194,7 @@ interface LoveW {
 // goodMorning
 type TextCardTemplateProps = Weather & {
   loveW: LoveW | null
-  isHoliday: ResIsHolidayProps | null
+  type?: string
 }
 
 // greetings

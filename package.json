@@ -62,5 +62,15 @@
     "axios": "^0.24.0",
     "dayjs": "^1.10.7",
     "dotenv": "^10.0.0"
+  },
+  "prettier": {
+    "stylelintIntegration": true,
+    "eslintIntegration": true,
+    "singleQuote": true,
+    "semi": false,
+    "insertPragma": false,
+    "trailingComma": "none",
+    "arrowParens": "avoid",
+    "space-before-function-paren": 0
   }
 }

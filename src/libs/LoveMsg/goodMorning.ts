@@ -19,7 +19,7 @@ const goodWord = async (weather: Weather) => {
       API.getOneMagazines(), // one杂志
       API.getNetEaseCloud(), // 网易云热评
       API.getDayEnglish(), // 每日英语
-      API.getIsHoliday(new Date().toLocaleDateString()), // 每日英语
+      API.getIsHoliday(new Date().toLocaleDateString()) // 节假日信息
     ])
 
     // 过滤掉异常数据
@@ -31,8 +31,8 @@ const goodWord = async (weather: Weather) => {
       oneMagazines,
       netEaseCloud,
       dayEnglish,
-      isHoliday,
-    ] = dataSource.map((n) => (n.status === 'fulfilled' ? n.value : null))
+      isHoliday
+    ] = dataSource.map(n => (n.status === 'fulfilled' ? n.value : null))
 
     // 对象写法
     const data: any = {
@@ -44,7 +44,7 @@ const goodWord = async (weather: Weather) => {
       netEaseCloud,
       dayEnglish,
       isHoliday,
-      weather,
+      weather
     }
 
     const template = textTemplate(data)
@@ -57,23 +57,29 @@ const goodWord = async (weather: Weather) => {
 }
 
 // 天气信息
-const weatherInfo = async () => {
-  const weather = await API.getWeather('云梦')
-  const date = new Date().toLocaleDateString()
+const weatherInfo = async (type?: string) => {
+  const wRes = await API.getWeather('云梦')
+  const weather = type ? wRes?.[1] : wRes?.[0]
+  // const date = new Date().toLocaleDateString()
   if (weather) {
     const loveW = await API.getLoveW()
-    const isHoliday = await API.getIsHoliday(date)
-    const templateW = textCardTemplateW({ ...weather, loveW, isHoliday })
+    // const isHoliday = await API.getIsHoliday(date)
+    const templateW = textCardTemplateW({ ...weather, loveW, type })
     console.log('weatherInfoW', templateW)
 
     // 发送消息
     await wxNotify(templateW)
   }
-  return weather
+  return wRes?.[0]
 }
 
 // goodMorning
 export const goodMorning = async () => {
   const weather = await weatherInfo()
   await goodWord(weather)
+}
+
+// getW 获取第二天天气预报
+export const getW = async () => {
+  await weatherInfo('e')
 }

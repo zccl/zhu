@@ -37,7 +37,7 @@ enum LoveMsgURL {
   // 一言
   oneWord = 'https://v1.hitokoto.cn/?encode=json',
   // 俏皮话
-  loveW = 'https://v1.hitokoto.cn/?encode=json',
+  loveW = 'https://v1.hitokoto.cn/?encode=json'
 }
 
 class API {
@@ -70,13 +70,18 @@ class API {
     }
   } */
   async getWeather(city = '云梦') {
-    const res = await getTian<Weather[]>({ url: LoveMsgURL.weather, params: { city } })
-    return res?.[0]
+    const res = await getTian<Weather[]>({
+      url: LoveMsgURL.weather,
+      params: { city }
+    })
+    return res
   }
 
   // 每日简报
   async getDailyBriefing() {
-    const res = await getTian<DailyBriefing[]>({ url: LoveMsgURL.dailyBriefing })
+    const res = await getTian<DailyBriefing[]>({
+      url: LoveMsgURL.dailyBriefing
+    })
     return res
   }
 
@@ -112,19 +117,27 @@ class API {
 
   // 网易云热评
   async getNetEaseCloud() {
-    const res = await getTian<NetEaseCloudProps[]>({ url: LoveMsgURL.netEaseCloud })
+    const res = await getTian<NetEaseCloudProps[]>({
+      url: LoveMsgURL.netEaseCloud
+    })
     return res?.[0]
   }
 
   // 获取农历信息
   async getLunarDate(date: string) {
-    const res = await getTian<ResLunarDateProps[]>({ url: LoveMsgURL.lunarDate, params: { date } })
+    const res = await getTian<ResLunarDateProps[]>({
+      url: LoveMsgURL.lunarDate,
+      params: { date }
+    })
     return res?.[0]
   }
 
   // 获取节假日信息
   async getIsHoliday(date: string) {
-    const res = await getTian<ResIsHolidayProps[]>({ url: LoveMsgURL.isHoliday, params: { date } })
+    const res = await getTian<ResIsHolidayProps[]>({
+      url: LoveMsgURL.isHoliday,
+      params: { date }
+    })
     return res?.[0]
   }
 
@@ -142,7 +155,10 @@ class API {
 
   // 雷人笑话
   async getJoke(num = 6) {
-    const res = await getTian<JokeProps[]>({ url: LoveMsgURL.joke, params: { num } })
+    const res = await getTian<JokeProps[]>({
+      url: LoveMsgURL.joke,
+      params: { num }
+    })
     return res
   }
 

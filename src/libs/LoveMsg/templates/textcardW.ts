@@ -10,7 +10,17 @@
  */
 
 export const textCardTemplateW = (data: TextCardTemplateProps) => {
-  const { area, weather, highest, lowest, wind, windsc, humidity, loveW } = data
+  const {
+    area,
+    weather,
+    highest,
+    lowest,
+    wind,
+    windsc,
+    humidity,
+    loveW,
+    type
+  } = data
 
   // 拼接内容
   let description = `\天气：${weather} | 温度：${lowest} ~ ${highest} | ${wind}：${windsc} | 湿度：${humidity}%\n `
@@ -47,7 +57,7 @@ export const textCardTemplateW = (data: TextCardTemplateProps) => {
   description += `
   [ 点我-有惊喜~ ] ❤️ 🧡 💛 💚 💖`
 
-  const title = `${area}今日天气状况：`
+  const title = `${area}${type ? '明日' : '今日'}天气状况：`
 
   return {
     msgtype: 'textcard',
@@ -58,7 +68,7 @@ export const textCardTemplateW = (data: TextCardTemplateProps) => {
       url: 'https://api.vvhan.com/api/acgimg', // 二次元动漫壁纸
       // url: 'https://www.dmoe.cc/random.php', // 二次元动漫壁纸
       // url: 'https://api.vvhan.com/api/60s', // 60s看世界
-      btntxt: 'By成',
-    },
+      btntxt: 'By成'
+    }
   }
 }

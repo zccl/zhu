@@ -4,7 +4,6 @@
  */
 import API from '../../api/loveMsg'
 import { wxNotify } from '../WxNotify'
-import { getW } from './goodMorning'
 
 // 获今日取故事
 const getStory = async () => {
@@ -24,6 +23,5 @@ ${res.content}`
 
 // 执行函数
 export const goodEvening = async () => {
-  await getW() // 晚上睡觉前发送第二天的天气情况
   await getStory()
 }

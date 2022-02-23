@@ -3,7 +3,7 @@
  * @description 入口
  */
 import dotenv from 'dotenv'
-import { goodMorning } from './goodMorning'
+import { goodMorning, getW } from './goodMorning'
 import { greetings } from './greetings'
 import { goodAfternoon } from './goodAfternoon'
 import { goodEvening } from './goodEvening'
@@ -25,6 +25,8 @@ export default function main() {
   } else if (MESSAGE_TYPE === 'moyu') {
     // 摸鱼
     moyu()
+  } else if (MESSAGE_TYPE === 'getW') {
+    getW()
   } else {
     // 早安
     goodMorning()

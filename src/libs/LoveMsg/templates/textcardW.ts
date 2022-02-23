@@ -55,9 +55,10 @@ export const textCardTemplateW = (data: TextCardTemplateProps) => {
 
   // 内容末尾，自定义
   description += `
-  [ 点我-有惊喜~ ] ❤️ 🧡 💛 💚 💖`
+  [ 点我-${type ? '随机头像' : '随机壁纸'}~ ] ❤️ 🧡 💛 💚 💖`
 
   const title = `${area}${type ? '明日' : '今日'}天气状况：`
+  const avaterUrl = 'https://api.vvhan.com/api/avatar'
 
   return {
     msgtype: 'textcard',
@@ -65,7 +66,7 @@ export const textCardTemplateW = (data: TextCardTemplateProps) => {
       title,
       description,
       // url: 'https://api.lovelive.tools/api/SweetNothings',
-      url: 'https://api.vvhan.com/api/acgimg', // 二次元动漫壁纸
+      url: type ? avaterUrl : 'https://api.vvhan.com/api/acgimg', // 二次元动漫壁纸
       // url: 'https://www.dmoe.cc/random.php', // 二次元动漫壁纸
       // url: 'https://api.vvhan.com/api/60s', // 60s看世界
       btntxt: 'By成'

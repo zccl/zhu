@@ -14,7 +14,11 @@ instance.interceptors.response.use(
     const res = response.data
     // 正确状态
     // TODO: 这里只针对符合该条件的接口
-    if (res.code === 200) return res.newslist
+    if (res.code === 200) {
+      return res.newslist
+    } else {
+      console.log(res.msg) // for debug
+    }
 
     return undefined
   },
